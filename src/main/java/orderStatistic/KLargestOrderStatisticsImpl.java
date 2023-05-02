@@ -1,6 +1,7 @@
 package orderStatistic;
 
 import util.Util;
+import java.util.Arrays;
 
 /**
  * Uma implementacao da interface KLargest que usa estatisticas de ordem para 
@@ -29,32 +30,27 @@ import util.Util;
  */
 public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLargest<T>{
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public T[] getKLargest(T[] array, int k) {
 		T kOrder  = this.orderStatistics(array, k);
-		if (kOrder == null) return (T[]) new Comparable[0];
+		if (kOrder == null) return Arrays.copyOfRange(array, 0, 0);
 		
-		T[] result = (T[]) new Comparable[array.length - k];
-		for (int i = 0; i < result.length; i++) {
-			result[i] = array[i+k];
-		}
-		return result;
+		return Arrays.copyOfRange(array, array.length - k, array.length);
 	}
 
 	/**
-	 * Metodo que retorna a k-esima estatistica de ordem de um array, usando
+	 * Metodo que reto rna a k-esima estatistica de ordem de um array, usando
 	 * a ideia de algum algoritmo de ordenacao visto em sala. Caso nao exista 
 	 * a k-esima estatistica de ordem, entao retorna null.
 	 * 
-	 * Obs: o valor de k deve ser entre 1 e N.
+	 * Obs: o valor de k deve ser entre 1 e N.  
 	 * 
 	 * @param array
 	 * @param k
 	 * @return
 	 */
 	public T orderStatistics(T[] array, int k){
-		if (k >= array.length) {
+		if (k >= array.length || k < 0) {
 			return null;
 		}
 		this.selectionSort(array);
