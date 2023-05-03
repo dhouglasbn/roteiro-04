@@ -3,13 +3,13 @@ package test;
 import java.util.Arrays;
 
 
-import orderStatistic.KLargestOrderStatisticsImpl;
-import orderStatistic.KLargest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class KLargestTest {
+import orderStatistic.QuickSelect;
+
+public class QuickSelectTest {
 
 	private Integer[] vetorTamPar;
 	private Integer[] vetorTamImpar;
@@ -20,7 +20,7 @@ public class KLargestTest {
 	private Integer[] vetorValoresReverso;
 	private Integer[] vetorTam4;
 
-	public KLargest<Integer> implementation;
+	public QuickSelect<Integer> implementation;
 
 	@Before
 	public void setUp() {
@@ -29,7 +29,7 @@ public class KLargestTest {
 		populaVetorRepetido(new Integer[] { 4, 9, 3, 4, 0, 5, 1, 4 });
 		populaVetorIgual(new Integer[] { 6, 6, 6, 6, 6, 6 });
 		populaVetorOrdenado(new Integer[] { 0, 2, 4, 5, 18, 30, 48, 50, 64, 69, 100 });
-		populaVetorReverso(new Integer[] { 30, 28, 17, 15, 14, 12, 10, 4, 2, 1, 0 });
+		populaVetorReverso(new Integer[] { 30, 28, 17, 15, 14, 12, 10, 4, 2, 2, 0 });
 		populaVetorTam4(new Integer[] { 4, 3, 2, -2 });
 
 		getImplementation();
@@ -41,7 +41,7 @@ public class KLargestTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
-		this.implementation = new KLargestOrderStatisticsImpl<Integer>();
+		this.implementation = new QuickSelect<Integer>();
 	}
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
@@ -86,61 +86,59 @@ public class KLargestTest {
 		if(array.length > 0){
 			copy1 = Arrays.copyOf(array, array.length);	
 		}
-		Integer[] result = implementation.getKLargest(array, 2);
+		Integer result = implementation.quickSelect(array, 2);
 		Arrays.sort(copy1);
-		Integer[] expected = {copy1[copy1.length - 2], copy1[copy1.length - 1]};
-		Assert.assertArrayEquals(expected, result);
+		Integer expected = copy1[1];
+		Assert.assertEquals(expected, result);
 	}
 
 	@Test
-	public void testKLargest01() {
+	public void testQuickSelect01() {
 		genericTest(vetorTamPar);
 	}
 
 	@Test
-	public void testKLargest02() {
+	public void testQuickSelect02() {
 		genericTest(vetorTamImpar);
 	}
 
 	@Test
-	public void testKLargest03() {
-		Integer[] result = implementation.getKLargest(vetorVazio, 4);
-		Integer[] expected = new Integer[0];
+	public void testQuickSelect03() {
+		Integer result = implementation.quickSelect(vetorVazio, 0);
 		
-		Assert.assertArrayEquals(expected, result);
+		Assert.assertNull(result);
 	}
 	
 	@Test
-	public void testKLargest04() {
-		Integer[] result = implementation.getKLargest(vetorTamPar, -1);
-		Integer[] expected = new Integer[0];
+	public void testQuickSelect04() {
+		Integer result = implementation.quickSelect(vetorTamPar, -1);
 		
-		Assert.assertArrayEquals(expected, result);
+		Assert.assertNull(result);
 	}
 
 	@Test
-	public void testKLargest05() {
+	public void testQuickSelect05() {
 		genericTest(vetorValoresIguais);
 	}
 
 	@Test
-	public void testKLargest06() {
+	public void testQuickSelect06() {
 		genericTest(vetorValoresRepetidos);
 	}
 	
 	@Test
-	public void testKLargest07() {
+	public void testQuickSelect07() {
 		genericTest(vetorValoresOrdenado);
 	}
 
 	@Test
-	public void testKLargest08() {
+	public void testQuickSelect08() {
 		genericTest(vetorValoresReverso);
 		
 	}
 	
 	@Test
-	public void testKLargest09() {
+	public void testQuickSelect09() {
 		genericTest(vetorTam4);
 		
 	}
