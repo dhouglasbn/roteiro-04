@@ -3,6 +3,7 @@ package test;
 import java.util.Arrays;
 
 
+
 import orderStatistic.KLargestOrderStatisticsImpl;
 import orderStatistic.KLargest;
 import org.junit.Assert;
@@ -144,12 +145,4 @@ public class KLargestTest {
 		genericTest(vetorTam4);
 		
 	}
-
-	// MÉTODOS QUE OS ALUNOS PODEM CRIAR
-	/**
-	 * O ALUNO PODE IMPLEMENTAR METODOS DE ORDENAÇÃO TESTANDO O SORT COM TRES
-	 * ARGUMENTOS PARA TESTAR A ORDENACAO EM UM PEDAÇO DO ARRAY. DICA: PROCUREM
-	 * SEGUIR A ESTRUTURA DOS MÉTODOS DE TESTE ACIMA DESCRITOS, ORDENANDO APENAS
-	 * UMA PARTE DO ARRAY.
-	 */
 }

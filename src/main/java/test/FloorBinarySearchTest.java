@@ -1,6 +1,5 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 
@@ -9,7 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import orderStatistic.QuickSelect;
 import problems.FloorBinarySearchImpl;
 
 public class FloorBinarySearchTest {
